@@ -33,6 +33,6 @@ Each example is an index.html that imports a sketch.js file. The sketch.js has t
 
 For the Anagram example do 
 ```
-http://192.168.0.11:9100/anagram/
+http://192.168.0.11:9100/secretText/
 ```
 

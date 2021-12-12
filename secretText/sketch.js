@@ -1,61 +1,71 @@
-let wordInput;
-let wordGiven;
-const letters = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789`
-let button1;
+
+//let words=['Simran','Kabir','Nikki','Alok','Family','Love'];
+//let story=
+let words="This is a sample \n that shows how to print a line of \n secrets for a story \n that is incredibly secretive and mysterious".split(" ");
+const letters = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%#%%#%%$@$^&*()!%$#^<>?~`
+
+let wordIndex=0;
+let word=words[wordIndex];
+let letterIndex=0;
+let maxRandomLetters=10;
+let randomLettersIndex=-1;
+let printedWord="";
+let row = 90;
+let wait = 0;
 
 function setup() {
-  createCanvas(200, 200);
-  background("beige");
-  noStroke();
-  textFont("Times");
-
-  createSpan("What's your name? "); 
-  wordInput = createInput();
-  wordInput.changed(entryCallback);
-
-  button1 = createButton("Press me"); 
-  button1.mouseClicked(button1Clicked);
+    createCanvas(windowWidth, windowHeight);
+    background(0,0,0);
+    fill(255);
+    noStroke();
+    textFont("Times");
+    frameRate(6);
+    textSize(30);
 }
 
-function draw() {
-  // put drawing code here
+function draw(){
+
+    drawText();
 }
 
 
-function entryCallback(){
-  wordGiven = entry1.value();
-  console.log("Word:"+wordGiven);
-  wordGivenReverse = reverseString(wordGiven);
-  console.log("Reversed:"+wordGivenReverse);
-}
-
-
-function button1Clicked() {
-  wordGiven = entry1.value();
-  console.log("Word:"+wordGiven);
-  wordGivenReverse = reverseString(wordGiven);
-  console.log("Reversed:"+wordGivenReverse);
-  fill(0);
-  textSize(10);
-  var splitString = wordGivenReverse.split("");
-  for (let i = 0; i < wordGivenReverse.length-1; i++) {
-    // first do random letters 
-    for(let j = 0;j<20;j++){
-      const rand = int(random(0, letters.length-1));
-      text(letters[rand], 20+(i*30), 40);
-      sleep(200);
+function drawText(){
+    
+    fill(0,255,0);
+    let letters = word.split("");
+    randomLettersIndex++;
+    if(randomLettersIndex > maxRandomLetters){
+        //console.log("wordIndex:"+wordIndex+" words:"+words.length);
+        printedWord=printedWord+letters[letterIndex];
+        randomLettersIndex=-1;
+        maxRandomLetters=int(random(0, 2));
+        letterIndex++;
+       
+        if(letterIndex == letters.length){
+            letterIndex=0;
+            wordIndex++;
+            printedWord=printedWord+" "            
+            if(wordIndex >  words.length-1){            
+                wordIndex=0;
+                printedWord=""
+            } 
+            word=words[wordIndex];
+ 
+        }
     }
-    // then the letter at the spot
-    text(splitString[i], 20+(i*30), 40);
-
-    text(entry1.value(), random(width),
-          random(height));
-  }
+    else if(randomLettersIndex ==maxRandomLetters ){
+        let rL = letters[letterIndex];
+        background(0);
+        text(printedWord+rL,60+(letterIndex),row);
+    }else{
+        let rL= getRandomLetter();
+        background(0);
+        text(printedWord+rL,60+(letterIndex),row);
+    }
 
 }
 
-
-
-function reverseString(str) {
-  return str.split("").reverse().join("");
+function getRandomLetter(){
+    const rand = int(random(0, letters.length-1));
+    return letters[rand];
 }
