@@ -1,6 +1,6 @@
 
 //let words=['Simran','Kabir','Nikki','Alok','Family','Love'];
-let story="This is the story of two siblings, one of them was Simran and the other was Kabir. Both of \n them were very good children. Simran and Kabir loved finding their lost things and used \n  to search it like a detective. They both had a magnifying glass and had a telescope. \n Simran and Kabir used to see distant things from that telescope nearby. \n \n Both of them were also very fond of sports and played especially with their ball. They used \n  to throw it to each other with great pleasure. \n "
+let story="This is a sample story with \n multiple line breaks and \n paragraphs and there is \n some fun to this"
 let words=story.split(" ");
 const letters = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%#%%#%%$@$^&*()!%$#^<>?~`
 
@@ -39,21 +39,17 @@ function drawText(){
         randomLettersIndex=-1;
         maxRandomLetters=int(random(0, 2));
         letterIndex++;
+       
         if(letterIndex == letters.length){
             letterIndex=0;
             wordIndex++;
-            
-            if(wordIndex == words.length){
+            printedWord=printedWord+" "
+            if(wordIndex >  words.length){
                 wordIndex=0;
                 printedWord=""
             }
             word=words[wordIndex];
-            if(word == "<p>"){
-                printedWord=printedWord+"\n"
-            }
-            else{
-                printedWord=printedWord+" "
-            }
+ 
         }
     }
     else if(randomLettersIndex ==maxRandomLetters ){
