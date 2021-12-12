@@ -1,7 +1,7 @@
 
 //let words=['Simran','Kabir','Nikki','Alok','Family','Love'];
-let story="This is a sample story with \n multiple line breaks and \n paragraphs and there is \n some fun to this"
-let words=story.split(" ");
+//let story=
+let words="This is a sample \n that shows how to print a line of \n secrets for a story \n that is incredibly secretive and mysterious".split(" ");
 const letters = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%#%%#%%$@$^&*()!%$#^<>?~`
 
 let wordIndex=0;
@@ -35,6 +35,7 @@ function drawText(){
     let letters = word.split("");
     randomLettersIndex++;
     if(randomLettersIndex > maxRandomLetters){
+        //console.log("wordIndex:"+wordIndex+" words:"+words.length);
         printedWord=printedWord+letters[letterIndex];
         randomLettersIndex=-1;
         maxRandomLetters=int(random(0, 2));
@@ -43,11 +44,11 @@ function drawText(){
         if(letterIndex == letters.length){
             letterIndex=0;
             wordIndex++;
-            printedWord=printedWord+" "
-            if(wordIndex >  words.length){
+            printedWord=printedWord+" "            
+            if(wordIndex >  words.length-1){            
                 wordIndex=0;
                 printedWord=""
-            }
+            } 
             word=words[wordIndex];
  
         }
